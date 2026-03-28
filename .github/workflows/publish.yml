@@ -31,6 +31,16 @@ jobs:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
 
+      - name: Checkout gus-ui-tokens
+        uses: actions/checkout@v4
+        with:
+          repository: gusvega-dev/gus-ui-tokens
+          path: ../gus-ui-tokens
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Build gus-ui-tokens
+        run: cd ../gus-ui-tokens && npm install && npm run build
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -40,13 +50,9 @@ jobs:
 
       - name: Install dependencies
         run: rm -rf node_modules package-lock.json && npm install
-        env:
-          NODE_AUTH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Build
         run: npm run build
-        env:
-          NODE_AUTH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Create Release Pull Request or Publish
         uses: changesets/action@v1
