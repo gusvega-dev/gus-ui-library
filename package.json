@@ -20,7 +20,9 @@
     "build:js": "tsup",
     "build:css": "postcss src/styles/index.css -o dist/style.css",
     "build": "npm run build:js && npm run build:css",
-    "dev": "tsup --watch",
+    "dev:js": "tsup --watch",
+    "dev:css": "postcss src/styles/index.css -o dist/style.css --watch",
+    "dev": "npm run dev:js & npm run dev:css",
     "release": "changeset publish"
   },
   "publishConfig": {
