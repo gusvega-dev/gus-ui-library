@@ -23,6 +23,7 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: gusvega-dev
+          repositories: "gus-ui-tokens,gus-ui-library"
 
       - name: Checkout
         uses: actions/checkout@v4
