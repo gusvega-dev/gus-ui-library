@@ -31,15 +31,14 @@ jobs:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
 
-      - name: Checkout gus-ui-tokens
-        uses: actions/checkout@v4
-        with:
-          repository: gusvega-dev/gus-ui-tokens
-          path: ../gus-ui-tokens
-          token: ${{ steps.app-token.outputs.token }}
+      - name: Clone gus-ui-tokens
+        run: gh repo clone gusvega-dev/gus-ui-tokens "${{ github.workspace }}/../gus-ui-tokens"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Build gus-ui-tokens
-        run: cd ../gus-ui-tokens && npm install && npm run build
+        run: npm install && npm run build
+        working-directory: ${{ github.workspace }}/../gus-ui-tokens
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
