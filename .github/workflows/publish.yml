@@ -31,12 +31,12 @@ jobs:
       - name: Install dependencies
         run: rm -rf node_modules package-lock.json && npm install
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
 
       - name: Build
         run: npm run build
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
 
       - name: Create Release Pull Request or Publish
         uses: changesets/action@v1
@@ -44,5 +44,5 @@ jobs:
           publish: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
+          NPM_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
