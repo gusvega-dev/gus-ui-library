@@ -1,6 +1,6 @@
 {
   "name": "@gusvega-dev/gus-ui-library",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "React UI component library built on Tailwind CSS",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -24,10 +24,6 @@
     "dev:css": "onchange 'src/styles/**/*' '../gus-ui-tokens/dist/*.js' --initial -- postcss src/styles/index.css -o dist/style.css",
     "dev": "npm run dev:js & npm run dev:css",
     "release": "changeset publish"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "public"
   },
   "peerDependencies": {
     "react": ">=17",

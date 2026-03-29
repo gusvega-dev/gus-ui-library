@@ -1,0 +1,9 @@
+{
+  "name": "@gusvega-dev/gus-ui-library",
+  "version": "0.1.1",
+  "exports": "./dist/index.d.ts",
+  "license": "MIT",
+  "publish": {
+    "include": ["dist", "package.json", "README.md"]
+  }
+}
