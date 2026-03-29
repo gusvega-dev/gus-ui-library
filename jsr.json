@@ -1,7 +1,14 @@
 {
   "name": "@gusvega-dev/gus-ui-library",
-  "version": "0.1.1",
-  "exports": "./dist/index.d.ts",
+  "version": "0.1.2",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "license": "MIT",
   "publish": {
     "include": ["dist", "package.json", "README.md"]
