@@ -77,36 +77,67 @@ npm install gus-ui-library
 import 'gus-ui-library/dist/style.css';
 ```
 
-2. Use components:
+2. Import and use components:
 
 ```tsx
-import { Button } from 'gus-ui-library';
+import { Button, Input, Card, CardHeader, CardContent } from 'gus-ui-library';
 
 export default function App() {
   return (
-    <div>
-      <Button variant="primary" size="md">Click me</Button>
-      <Button variant="secondary" size="sm">Cancel</Button>
-      <Button variant="ghost" size="lg">Learn more</Button>
-    </div>
+    <Card>
+      <CardHeader>Welcome</CardHeader>
+      <CardContent>
+        <Input placeholder="Enter name..." />
+        <Button variant="primary">Submit</Button>
+      </CardContent>
+    </Card>
   );
 }
 ```
 
-## Components
+## Component API
 
-### Button
+### Actions
+- **Button** — `variant: "primary" | "secondary" | "ghost" | "inverted"`, `size: "sm" | "md" | "lg"`
+- **Link** — `variant: "default" | "muted" | "underline"`
 
-| Prop      | Type                              | Default     |
-| --------- | --------------------------------- | ----------- |
-| `variant` | `primary` \| `secondary` \| `ghost` | `primary`   |
-| `size`    | `sm` \| `md` \| `lg`             | `md`        |
+### Forms
+- **Input** — `type`, `placeholder`, `error`, `disabled`, `forwardRef`
+- **Label** — with optional required marker
+- **Textarea** — `rows`, `resizable`, `disabled`, `forwardRef`
+- **Checkbox** — `checked`, `onChange`, `disabled`
+- **Radio** — `checked`, `onChange`, `disabled`
+- **Switch** — `checked`, `onChange`, `disabled`
+- **Select** — `options`, `value`, `onChange`
+- **FormField** — compound component (Label + Input + error)
 
-Also accepts all standard HTML `<button>` attributes.
+### Data Display
+- **Badge** — `variant: "default" | "secondary" | "outline"`
+- **Avatar** — `size: "sm" | "md" | "lg"`, `color`, `image`
+- **Tag** — with optional remove button
+- **Stat** — metric with optional trend indicator
+- **Table** — `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`
+- **Code** — inline and block variants with syntax highlighting support
+- **Kbd** — keyboard shortcut display
+- **Progress** — animated progress bar with percentage
+
+### Feedback
+- **Alert** — `variant: "default" | "outline" | "filled"`, optional title
+- **Spinner** — `size: "sm" | "md" | "lg"`
+- **Skeleton** — shimmer loading placeholder
+
+### Navigation
+- **Breadcrumb** — with custom separator
+- **Tabs** — `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
+
+### Layout
+- **Card** — `Card`, `CardHeader`, `CardContent`, `CardFooter`
+- **Separator** — horizontal or vertical
+- **Stack** — `direction: "row" | "col"`, `gap`, alignment utilities
 
 ## Development
 
-Requires `@gusvega-dev/gus-ui-tokens` (or `gus-ui-tokens` if published) to be built locally first:
+Requires `@gusvega-dev/gus-ui-tokens` to be built locally first:
 
 ```bash
 # 1. Build tokens
@@ -114,16 +145,4 @@ cd ../gus-ui-tokens && npm install && npm run build
 
 # 2. Install and build library
 cd ../gus-ui-library && npm install && npm run build
-```
-
-## Publishing
-
-Published to npm: https://www.npmjs.com/package/gus-ui-library
-
-Versioning is managed with [Changesets](https://github.com/changesets/changesets).
-
-```bash
-npx changeset        # create a changeset
-npx changeset version # bump versions
-npm run release      # publish (CI handles this on merge to main)
 ```
