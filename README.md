@@ -1,4 +1,4 @@
-# @gusvega-dev/gus-ui-library
+# gus-ui-library
 
 React UI component library built on Tailwind CSS. Pre-compiled styles — no Tailwind setup required by consumers.
 
@@ -61,31 +61,26 @@ React UI component library built on Tailwind CSS. Pre-compiled styles — no Tai
 
 ## Installation
 
-React UI component library built on top of Tailwind CSS. Styles are pre-compiled — no Tailwind setup required by consumers. Published to GitHub Packages.
+React UI component library built on top of Tailwind CSS. Styles are pre-compiled — no Tailwind setup required by consumers. Published to npm.
 
 ## Installation
 
 ```bash
-npm install @gusvega-dev/gus-ui-library
+npm install gus-ui-library
 ```
-
-> Requires GitHub Packages authentication. Add to your `.npmrc`:
-> ```
-> @gusvega-dev:registry=https://npm.pkg.github.com
-> ```
 
 ## Usage
 
 1. Import the styles once at your app entry point:
 
 ```ts
-import '@gusvega-dev/gus-ui-library/dist/style.css';
+import 'gus-ui-library/dist/style.css';
 ```
 
 2. Use components:
 
 ```tsx
-import { Button } from '@gusvega-dev/gus-ui-library';
+import { Button } from 'gus-ui-library';
 
 export default function App() {
   return (
@@ -111,7 +106,7 @@ Also accepts all standard HTML `<button>` attributes.
 
 ## Development
 
-Requires `@gusvega-dev/gus-ui-tokens` to be built locally first:
+Requires `@gusvega-dev/gus-ui-tokens` (or `gus-ui-tokens` if published) to be built locally first:
 
 ```bash
 # 1. Build tokens
@@ -121,9 +116,9 @@ cd ../gus-ui-tokens && npm install && npm run build
 cd ../gus-ui-library && npm install && npm run build
 ```
 
-> Once `@gusvega-dev/gus-ui-tokens` is published to GitHub Packages, update its entry in `package.json` devDependencies from `file:../gus-ui-tokens` to `^0.0.1`.
-
 ## Publishing
+
+Published to npm: https://www.npmjs.com/package/gus-ui-library
 
 Versioning is managed with [Changesets](https://github.com/changesets/changesets).
 
