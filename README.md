@@ -1,5 +1,66 @@
 # @gusvega-dev/gus-ui-library
 
+React UI component library built on Tailwind CSS. Pre-compiled styles — no Tailwind setup required by consumers.
+
+## Component Status
+
+### Actions
+- [x] Button — `primary | secondary | ghost | inverted`, `sm | md | lg`, disabled
+
+### Form
+- [x] Input — forwardRef, error state, disabled
+- [x] Label — required marker
+- [x] Textarea — forwardRef, resizable
+- [x] Checkbox — controlled, disabled
+- [x] Radio — controlled, disabled
+- [x] Switch — controlled, disabled
+- [x] Select — native styled, controlled
+- [x] FormField — Label + Input + error message compound
+- [ ] Slider — range input (planned)
+- [ ] DatePicker — (planned)
+- [ ] FileUpload — (planned)
+
+### Data Display
+- [x] Badge — `default | secondary | outline`
+- [x] Avatar — 3 sizes, 3 colors, image support, stackable
+- [x] Tag — with optional remove button
+- [x] Stat — metric with optional trend
+- [x] Table — Table, TableHeader, TableBody, TableRow, TableHead, TableCell
+- [x] Code — inline + block variants
+- [x] Kbd — keyboard shortcut key
+- [ ] Tooltip — (planned, requires positioning)
+- [ ] Timeline — (planned)
+
+### Feedback
+- [x] Spinner — 3 sizes
+- [x] Progress — animated fill bar
+- [x] Alert — `default | outline | filled` with optional title
+- [x] Skeleton — shimmer loading placeholder
+- [ ] Toast — (planned, requires context/portal)
+- [ ] Banner — (planned)
+
+### Navigation
+- [x] Link — `default | muted | underline`
+- [x] Breadcrumb — with separator
+- [x] Tabs — `Tabs | TabsList | TabsTrigger | TabsContent`
+- [ ] Pagination — (planned)
+- [ ] Navbar — (planned as a compound)
+
+### Layout
+- [x] Card — `Card | CardHeader | CardContent | CardFooter`
+- [x] Separator — horizontal / vertical
+- [x] Stack — row / col with gap and alignment
+- [ ] Grid — (planned)
+- [ ] Container — (planned)
+
+### Overlay
+- [ ] Dialog / Modal — (planned, requires portal)
+- [ ] Dropdown — (planned, requires positioning)
+- [ ] Popover — (planned, requires positioning)
+- [ ] Sheet — (planned, requires portal)
+
+## Installation
+
 React UI component library built on top of Tailwind CSS. Styles are pre-compiled — no Tailwind setup required by consumers. Published to GitHub Packages.
 
 ## Installation
