@@ -137,7 +137,7 @@ export default function App() {
 
 ## Development
 
-Requires `gus-ui-tokens` (local dev dependency) to be built first:
+Requires `gus-ui-tokens` to be built locally first:
 
 ```bash
 # 1. Build tokens
