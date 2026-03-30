@@ -1,4 +1,4 @@
-# gus-ui-library
+# @gusvega/ui
 
 React UI component library built on Tailwind CSS. Pre-compiled styles — no Tailwind setup required by consumers.
 
@@ -66,7 +66,7 @@ React UI component library built on top of Tailwind CSS. Styles are pre-compiled
 ## Installation
 
 ```bash
-npm install gus-ui-library
+npm install @gusvega/ui
 ```
 
 ## Usage
