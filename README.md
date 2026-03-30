@@ -66,7 +66,7 @@ React UI component library built on top of Tailwind CSS. Styles are pre-compiled
 ## Installation
 
 ```bash
-npm install gus-ui-library
+npm install gus-ui
 ```
 
 ## Usage
@@ -144,5 +144,5 @@ Requires `gus-ui-tokens` to be built locally first:
 cd ../gus-ui-tokens && npm install && npm run build
 
 # 2. Install and build library
-cd ../gus-ui-library && npm install && npm run build
+cd ../gus-ui && npm install && npm run build
 ```
