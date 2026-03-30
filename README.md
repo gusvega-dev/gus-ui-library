@@ -63,7 +63,7 @@ React UI component library built on Tailwind CSS. Pre-compiled styles — no Tai
 
 React UI component library built on top of Tailwind CSS. Styles are pre-compiled — no Tailwind setup required by consumers. Published to npm.
 
-## Installation
+## Installation 
 
 ```bash
 npm install @gusvega/ui
