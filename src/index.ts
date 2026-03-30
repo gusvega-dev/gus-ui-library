@@ -1,2 +1,2 @@
-// gus-ui — React component library built on Tailwind CSS
+// gus-ui-library — React component library built on Tailwind CSS
 export * from './components';
