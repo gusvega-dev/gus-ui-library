@@ -2,6 +2,8 @@
 
 React UI component library built on Tailwind CSS. Pre-compiled styles — no Tailwind setup required by consumers.
 
+<!-- Updated: 2026-03-30 -->
+
 ## Component Status
 
 ### Actions
