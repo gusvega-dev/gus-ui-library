@@ -1,6 +1,6 @@
 {
   "name": "@gusvega/ui",
-  "version": "0.4.0",
+  "version": "0.4.8",
   "description": "React UI component library built on Tailwind CSS",
   "private": false,
   "main": "./dist/index.js",
@@ -12,10 +12,12 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
+    "./style.css": "./dist/style.css",
     "./dist/style.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"
@@ -25,7 +27,7 @@
     "build:css": "postcss src/styles/index.css -o dist/style.css",
     "build": "npm run build:js && npm run build:css",
     "dev:js": "tsup --watch",
-    "dev:css": "onchange 'node_modules/@gusvega/ui-tokens/dist/*.js' --initial -- postcss src/styles/index.css -o dist/style.css",
+    "dev:css": "onchange 'src/**/*.{ts,tsx,css}' --initial -- postcss src/styles/index.css -o dist/style.css",
     "dev": "npm run dev:js & npm run dev:css",
     "release": "changeset publish"
   },
@@ -35,7 +37,6 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
-    "@gusvega/ui-tokens": "file:../gus-ui-tokens",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "autoprefixer": "^10.4.18",

@@ -1,6 +1,6 @@
 # @gusvega/ui
 
-React UI component library built on Tailwind CSS. Pre-compiled styles — no Tailwind setup required by consumers.
+React UI component library built on Tailwind CSS. Pre-compiled styles with built-in theme tokens. No separate tokens package required.
 
 <!-- Updated: 2026-03-30 -->
 
@@ -63,7 +63,7 @@ React UI component library built on Tailwind CSS. Pre-compiled styles — no Tai
 
 ## Installation
 
-React UI component library built on top of Tailwind CSS. Styles are pre-compiled — no Tailwind setup required by consumers. Published to npm.
+React UI component library built on top of Tailwind CSS. Styles are pre-compiled and the default theme ships inside the library. Published to npm.
 
 ## Installation 
 
@@ -76,13 +76,13 @@ npm install @gusvega/ui
 1. Import the styles once at your app entry point:
 
 ```ts
-import 'gus-ui-library/dist/style.css';
+import '@gusvega/ui/style.css';
 ```
 
 2. Import and use components:
 
 ```tsx
-import { Button, Input, Card, CardHeader, CardContent } from 'gus-ui-library';
+import { Button, Input, Card, CardHeader, CardContent } from '@gusvega/ui';
 
 export default function App() {
   return (
@@ -96,6 +96,47 @@ export default function App() {
   );
 }
 ```
+
+## Theme Overrides
+
+The library ships with built-in theme values for colors, spacing, and typography. The simplest way to customize them is to override the CSS variables after importing `@gusvega/ui/style.css`.
+
+### Option 1: Override in CSS
+
+```css
+:root {
+  --gus-color-neutral-900: 15 23 42;
+  --gus-color-neutral-100: 241 245 249;
+  --gus-font-family-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --gus-space-4: 1.125rem;
+}
+```
+
+### Option 2: Override in React with a helper
+
+```tsx
+import { createThemeVariables } from '@gusvega/ui';
+
+const themeVars = createThemeVariables({
+  colors: {
+    neutral: {
+      900: '#0f172a',
+      100: '#f1f5f9',
+    },
+  },
+  typography: {
+    fontFamily: {
+      sans: ['Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
+  },
+});
+
+export function App() {
+  return <div style={themeVars}>{/* your UI */}</div>;
+}
+```
+
+`createThemeVariables` returns CSS custom properties, so the theme can be applied globally or scoped to a single subtree.
 
 ## Component API
 
@@ -139,12 +180,7 @@ export default function App() {
 
 ## Development
 
-Requires `gus-ui-tokens` to be built locally first:
-
 ```bash
-# 1. Build tokens
-cd ../gus-ui-tokens && npm install && npm run build
-
-# 2. Install and build library
+# Install and build library
 cd ../gus-ui-library && npm install && npm run build
 ```

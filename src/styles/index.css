@@ -1,3 +1,87 @@
+@layer base {
+  :root {
+    --gus-color-black: 0 0 0;
+    --gus-color-white: 255 255 255;
+
+    --gus-color-neutral-50: 250 250 250;
+    --gus-color-neutral-100: 245 245 245;
+    --gus-color-neutral-200: 229 229 229;
+    --gus-color-neutral-300: 212 212 212;
+    --gus-color-neutral-400: 163 163 163;
+    --gus-color-neutral-500: 115 115 115;
+    --gus-color-neutral-600: 82 82 82;
+    --gus-color-neutral-700: 64 64 64;
+    --gus-color-neutral-800: 38 38 38;
+    --gus-color-neutral-900: 23 23 23;
+    --gus-color-neutral-950: 10 10 10;
+
+    --gus-space-px: 1px;
+    --gus-space-0: 0px;
+    --gus-space-0_5: 0.125rem;
+    --gus-space-1: 0.25rem;
+    --gus-space-1_5: 0.375rem;
+    --gus-space-2: 0.5rem;
+    --gus-space-2_5: 0.625rem;
+    --gus-space-3: 0.75rem;
+    --gus-space-3_5: 0.875rem;
+    --gus-space-4: 1rem;
+    --gus-space-5: 1.25rem;
+    --gus-space-6: 1.5rem;
+    --gus-space-7: 1.75rem;
+    --gus-space-8: 2rem;
+    --gus-space-9: 2.25rem;
+    --gus-space-10: 2.5rem;
+    --gus-space-11: 2.75rem;
+    --gus-space-12: 3rem;
+    --gus-space-14: 3.5rem;
+    --gus-space-16: 4rem;
+    --gus-space-20: 5rem;
+    --gus-space-24: 6rem;
+    --gus-space-28: 7rem;
+    --gus-space-32: 8rem;
+    --gus-space-36: 9rem;
+    --gus-space-40: 10rem;
+    --gus-space-44: 11rem;
+    --gus-space-48: 12rem;
+    --gus-space-52: 13rem;
+    --gus-space-56: 14rem;
+    --gus-space-60: 15rem;
+    --gus-space-64: 16rem;
+    --gus-space-72: 18rem;
+    --gus-space-80: 20rem;
+    --gus-space-96: 24rem;
+
+    --gus-font-family-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+    --gus-font-family-mono: JetBrains Mono, ui-monospace, SFMono-Regular, monospace;
+
+    --gus-font-size-xs: 0.75rem;
+    --gus-font-size-sm: 0.875rem;
+    --gus-font-size-base: 1rem;
+    --gus-font-size-lg: 1.125rem;
+    --gus-font-size-xl: 1.25rem;
+    --gus-font-size-2xl: 1.5rem;
+    --gus-font-size-3xl: 1.875rem;
+    --gus-font-size-4xl: 2.25rem;
+    --gus-font-size-5xl: 3rem;
+
+    --gus-line-height-xs: 1rem;
+    --gus-line-height-sm: 1.25rem;
+    --gus-line-height-base: 1.5rem;
+    --gus-line-height-lg: 1.75rem;
+    --gus-line-height-xl: 1.75rem;
+    --gus-line-height-2xl: 2rem;
+    --gus-line-height-3xl: 2.25rem;
+    --gus-line-height-4xl: 2.5rem;
+    --gus-line-height-5xl: 1;
+
+    --gus-font-weight-normal: 400;
+    --gus-font-weight-medium: 500;
+    --gus-font-weight-semibold: 600;
+    --gus-font-weight-bold: 700;
+    --gus-font-weight-extrabold: 800;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
