@@ -15,13 +15,13 @@ export const Label: React.FC<LabelProps> = ({
   <label
     className={[
       'block text-sm font-medium',
-      invert ? 'text-white/80' : 'text-neutral-700',
+      invert ? 'text-primary-foreground/80' : 'text-foreground',
       className,
     ].filter(Boolean).join(' ')}
     {...props}
   >
     {children}
-    {required && <span className="ml-0.5 text-neutral-400">*</span>}
+    {required && <span className="ml-0.5 text-muted-foreground">*</span>}
   </label>
 );
 

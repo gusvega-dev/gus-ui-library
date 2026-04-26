@@ -1,4 +1,7 @@
-import React, { useEffect, useRef, useState, Children } from 'react';
+'use client';
+
+import React, { Children } from 'react';
+import { useIntersection } from '../../hooks/useIntersection';
 
 export interface FadeInProps {
   children: React.ReactNode;
@@ -9,6 +12,8 @@ export interface FadeInProps {
   duration?: number;
   /** Y offset to animate from (px) */
   offset?: number;
+  /** Only animate once (default: true) */
+  once?: boolean;
 }
 
 export const FadeIn: React.FC<FadeInProps> = ({
@@ -17,36 +22,18 @@ export const FadeIn: React.FC<FadeInProps> = ({
   delay = 0,
   duration = 500,
   offset = 16,
+  once = true,
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, isVisible } = useIntersection({ once });
 
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : `translateY(${offset}px)`,
-        transition: `opacity ${duration}ms ease, transform ${duration}ms ease`,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : `translateY(${offset}px)`,
+        transition: `opacity ${duration}ms var(--gus-ease-out, ease), transform ${duration}ms var(--gus-ease-out, ease)`,
         transitionDelay: `${delay}ms`,
         willChange: 'opacity, transform',
       }}
@@ -65,6 +52,7 @@ export interface FadeInStaggerProps {
   delay?: number;
   duration?: number;
   offset?: number;
+  once?: boolean;
 }
 
 export const FadeInStagger: React.FC<FadeInStaggerProps> = ({
@@ -74,10 +62,11 @@ export const FadeInStagger: React.FC<FadeInStaggerProps> = ({
   delay = 0,
   duration = 500,
   offset = 16,
+  once = true,
 }) => (
   <div className={className}>
     {Children.map(children, (child, i) => (
-      <FadeIn key={i} delay={delay + i * stagger} duration={duration} offset={offset}>
+      <FadeIn key={i} delay={delay + i * stagger} duration={duration} offset={offset} once={once}>
         {child}
       </FadeIn>
     ))}

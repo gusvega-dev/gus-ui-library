@@ -25,7 +25,7 @@ export const Code: React.FC<CodeProps> = ({ block = false, children, className =
   return (
     <code
       className={[
-        'inline-flex items-center rounded bg-neutral-100 text-neutral-800 px-1.5 py-0.5 text-xs font-mono',
+        'inline-flex items-center rounded bg-muted text-foreground px-1.5 py-0.5 text-xs font-mono',
         className,
       ]
         .filter(Boolean)
@@ -44,8 +44,8 @@ export interface KbdProps {
 export const Kbd: React.FC<KbdProps> = ({ children, className = '' }) => (
   <kbd
     className={[
-      'inline-flex items-center justify-center rounded border border-neutral-200 bg-neutral-50',
-      'px-1.5 py-0.5 text-xs font-mono text-neutral-600 shadow-sm',
+      'inline-flex items-center justify-center rounded border border-border bg-background',
+      'px-1.5 py-0.5 text-xs font-mono text-muted-foreground shadow-xs',
       className,
     ]
       .filter(Boolean)

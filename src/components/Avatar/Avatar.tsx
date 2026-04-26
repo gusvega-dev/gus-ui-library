@@ -3,7 +3,7 @@ import React from 'react';
 export type AvatarSize = 'sm' | 'md' | 'lg';
 export type AvatarColor = 'dark' | 'medium' | 'light';
 
-export interface AvatarProps {
+export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   initials?: string;
   src?: string;
   alt?: string;
@@ -19,35 +19,36 @@ const sizeClasses: Record<AvatarSize, string> = {
 };
 
 const colorClasses: Record<AvatarColor, string> = {
-  dark: 'bg-neutral-900 text-white',
-  medium: 'bg-neutral-500 text-white',
-  light: 'bg-neutral-200 text-neutral-700',
+  dark: 'bg-primary text-primary-foreground',
+  medium: 'bg-muted-foreground text-background',
+  light: 'bg-muted text-muted-foreground',
 };
 
-export const Avatar: React.FC<AvatarProps> = ({
-  initials,
-  src,
-  alt = '',
-  size = 'md',
-  color = 'dark',
-  className = '',
-}) => (
-  <div
-    className={[
-      'relative inline-flex items-center justify-center rounded-full font-medium flex-shrink-0 select-none',
-      sizeClasses[size],
-      colorClasses[color],
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')}
-  >
-    {src ? (
-      <img src={src} alt={alt} className="w-full h-full rounded-full object-cover" />
-    ) : (
-      <span>{initials}</span>
-    )}
-  </div>
+export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+  ({ initials, src, alt = '', size = 'md', color = 'dark', className = '', ...props }, ref) => (
+    <div
+      ref={ref}
+      className={[
+        'relative inline-flex items-center justify-center rounded-full font-medium flex-shrink-0 select-none overflow-hidden',
+        sizeClasses[size],
+        colorClasses[color],
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      role={src ? undefined : 'img'}
+      aria-label={src ? undefined : (alt || initials)}
+      {...props}
+    >
+      {src ? (
+        <img src={src} alt={alt} className="w-full h-full rounded-full object-cover" />
+      ) : (
+        <span aria-hidden="true">{initials}</span>
+      )}
+    </div>
+  )
 );
+
+Avatar.displayName = 'Avatar';
 
 export default Avatar;

@@ -1,6 +1,8 @@
-import React from 'react';
+'use client';
 
-interface PopoverProps {
+import React, { useEffect } from 'react';
+
+export interface PopoverProps {
   trigger: React.ReactNode;
   children: React.ReactNode;
   side?: 'top' | 'right' | 'bottom' | 'left';
@@ -9,6 +11,13 @@ interface PopoverProps {
 export function Popover({ trigger, children, side = 'bottom' }: PopoverProps) {
   const [open, setOpen] = React.useState(false);
   const triggerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
 
   const sideClasses = {
     top: 'bottom-full mb-2',
@@ -23,17 +32,17 @@ export function Popover({ trigger, children, side = 'bottom' }: PopoverProps) {
         ref={triggerRef}
         onClick={() => setOpen(!open)}
         className="cursor-pointer"
+        aria-expanded={open}
+        aria-haspopup="dialog"
       >
         {trigger}
       </div>
       {open && (
         <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} aria-hidden="true" />
           <div
-            className="fixed inset-0 z-40"
-            onClick={() => setOpen(false)}
-          />
-          <div
-            className={`absolute z-50 bg-white border border-neutral-200 rounded-lg shadow-lg p-3 ${sideClasses[side]}`}
+            role="dialog"
+            className={`absolute z-50 bg-popover text-popover-foreground border border-border rounded-lg shadow-lg p-3 min-w-48 ${sideClasses[side]}`}
             onClick={(e) => e.stopPropagation()}
           >
             {children}
@@ -43,3 +52,5 @@ export function Popover({ trigger, children, side = 'bottom' }: PopoverProps) {
     </div>
   );
 }
+
+export default Popover;

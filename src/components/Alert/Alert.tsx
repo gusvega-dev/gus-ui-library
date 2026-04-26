@@ -2,7 +2,7 @@ import React from 'react';
 
 export type AlertVariant = 'default' | 'outline' | 'filled';
 
-export interface AlertProps {
+export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: AlertVariant;
   title?: string;
   children: React.ReactNode;
@@ -10,48 +10,41 @@ export interface AlertProps {
 }
 
 const variantClasses: Record<AlertVariant, string> = {
-  default: 'bg-neutral-50 border border-neutral-200 text-neutral-700',
-  outline: 'bg-white border border-neutral-900 text-neutral-900',
-  filled: 'bg-neutral-900 border border-neutral-900 text-white',
-};
-
-const titleClasses: Record<AlertVariant, string> = {
-  default: 'text-neutral-900',
-  outline: 'text-neutral-900',
-  filled: 'text-white',
+  default: 'bg-muted border border-border text-foreground',
+  outline: 'bg-background border border-foreground text-foreground',
+  filled: 'bg-primary border border-primary text-primary-foreground',
 };
 
 const bodyClasses: Record<AlertVariant, string> = {
-  default: 'text-neutral-600',
-  outline: 'text-neutral-700',
-  filled: 'text-neutral-300',
+  default: 'text-muted-foreground',
+  outline: 'text-foreground',
+  filled: 'text-primary-foreground/80',
 };
 
-export const Alert: React.FC<AlertProps> = ({
-  variant = 'default',
-  title,
-  children,
-  className = '',
-}) => (
-  <div
-    className={[
-      'rounded-lg px-4 py-3',
-      variantClasses[variant],
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')}
-    role="alert"
-  >
-    {title && (
-      <p className={['text-sm font-semibold mb-1', titleClasses[variant]].join(' ')}>
-        {title}
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  ({ variant = 'default', title, children, className = '', ...props }, ref) => (
+    <div
+      ref={ref}
+      className={[
+        'rounded-lg px-4 py-3',
+        variantClasses[variant],
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      role="alert"
+      {...props}
+    >
+      {title && (
+        <p className="text-sm font-semibold mb-1">{title}</p>
+      )}
+      <p className={['text-sm leading-relaxed', bodyClasses[variant]].join(' ')}>
+        {children}
       </p>
-    )}
-    <p className={['text-sm leading-relaxed', bodyClasses[variant]].join(' ')}>
-      {children}
-    </p>
-  </div>
+    </div>
+  )
 );
+
+Alert.displayName = 'Alert';
 
 export default Alert;

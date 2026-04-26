@@ -1,44 +1,57 @@
-import React, { createContext, useContext, useState } from 'react';
+'use client';
+
+import React, { createContext, useContext, useId, useState } from 'react';
 
 interface TabsContextValue {
   active: string;
   setActive: (value: string) => void;
+  baseId: string;
 }
 
-const TabsContext = createContext<TabsContextValue>({ active: '', setActive: () => {} });
+const TabsContext = createContext<TabsContextValue>({ active: '', setActive: () => {}, baseId: '' });
 
 export interface TabsProps {
   defaultValue: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
   children: React.ReactNode;
   className?: string;
 }
 
-export const Tabs: React.FC<TabsProps> = ({ defaultValue, children, className = '' }) => {
-  const [active, setActive] = useState(defaultValue);
+export const Tabs: React.FC<TabsProps> = ({ defaultValue, value, onValueChange, children, className = '' }) => {
+  const [internal, setInternal] = useState(defaultValue);
+  const active = value ?? internal;
+  const setActive = (v: string) => { setInternal(v); onValueChange?.(v); };
+  const baseId = useId();
+
   return (
-    <TabsContext.Provider value={{ active, setActive }}>
+    <TabsContext.Provider value={{ active, setActive, baseId }}>
       <div className={className}>{children}</div>
     </TabsContext.Provider>
   );
 };
+Tabs.displayName = 'Tabs';
 
-export interface TabsListProps {
+export interface TabsListProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
 }
 
-export const TabsList: React.FC<TabsListProps> = ({ children, className = '' }) => (
+export const TabsList: React.FC<TabsListProps> = ({ children, className = '', ...props }) => (
   <div
+    role="tablist"
     className={[
-      'inline-flex items-center border-b border-neutral-200 w-full',
+      'inline-flex items-center border-b border-border w-full',
       className,
     ]
       .filter(Boolean)
       .join(' ')}
+    {...props}
   >
     {children}
   </div>
 );
+TabsList.displayName = 'TabsList';
 
 export interface TabsTriggerProps {
   value: string;
@@ -53,20 +66,24 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
   disabled = false,
   className = '',
 }) => {
-  const { active, setActive } = useContext(TabsContext);
+  const { active, setActive, baseId } = useContext(TabsContext);
   const isActive = active === value;
 
   return (
     <button
       type="button"
+      role="tab"
+      id={`${baseId}-tab-${value}`}
+      aria-controls={`${baseId}-panel-${value}`}
+      aria-selected={isActive}
       disabled={disabled}
       onClick={() => setActive(value)}
       className={[
         'px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors',
         'focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed',
         isActive
-          ? 'border-neutral-900 text-neutral-900'
-          : 'border-transparent text-neutral-500 hover:text-neutral-700',
+          ? 'border-primary text-foreground'
+          : 'border-transparent text-muted-foreground hover:text-foreground',
         className,
       ]
         .filter(Boolean)
@@ -76,6 +93,7 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
     </button>
   );
 };
+TabsTrigger.displayName = 'TabsTrigger';
 
 export interface TabsContentProps {
   value: string;
@@ -84,13 +102,20 @@ export interface TabsContentProps {
 }
 
 export const TabsContent: React.FC<TabsContentProps> = ({ value, children, className = '' }) => {
-  const { active } = useContext(TabsContext);
+  const { active, baseId } = useContext(TabsContext);
   if (active !== value) return null;
   return (
-    <div className={['py-4', className].filter(Boolean).join(' ')}>
+    <div
+      role="tabpanel"
+      id={`${baseId}-panel-${value}`}
+      aria-labelledby={`${baseId}-tab-${value}`}
+      tabIndex={0}
+      className={['py-4 focus:outline-none', className].filter(Boolean).join(' ')}
+    >
       {children}
     </div>
   );
 };
+TabsContent.displayName = 'TabsContent';
 
 export default Tabs;

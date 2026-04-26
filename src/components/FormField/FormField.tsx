@@ -23,18 +23,18 @@ export const FormField: React.FC<FormFieldProps> = ({
     {label && (
       <label
         htmlFor={htmlFor}
-        className="block text-sm font-medium text-neutral-700"
+        className="block text-sm font-medium text-foreground"
       >
         {label}
-        {required && <span className="ml-0.5 text-neutral-400">*</span>}
+        {required && <span className="ml-0.5 text-muted-foreground" aria-hidden="true">*</span>}
       </label>
     )}
     {children}
     {error && (
-      <p className="text-xs text-neutral-900 font-medium">{error}</p>
+      <p className="text-xs text-destructive font-medium" role="alert">{error}</p>
     )}
     {!error && hint && (
-      <p className="text-xs text-neutral-400">{hint}</p>
+      <p className="text-xs text-muted-foreground">{hint}</p>
     )}
   </div>
 );
