@@ -15,29 +15,10 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - name: Generate GitHub App Token
-        id: app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: gusvega-dev
-          repositories: "gus-ui-tokens,gus-ui-library"
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ steps.app-token.outputs.token }}
-
-      - name: Clone gus-ui-tokens
-        run: gh repo clone gusvega-dev/gus-ui-tokens "${{ github.workspace }}/../gus-ui-tokens"
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-
-      - name: Build gus-ui-tokens
-        run: npm install && npm run build
-        working-directory: ${{ github.workspace }}/../gus-ui-tokens
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -46,7 +27,10 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
-        run: rm -rf node_modules package-lock.json && npm install
+        run: npm ci
+
+      - name: Ensure Rollup native package
+        run: npm install --no-save --package-lock=false @rollup/rollup-linux-x64-gnu
 
       - name: Build
         run: npm run build
@@ -56,6 +40,6 @@ jobs:
         with:
           publish: npm run release
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
