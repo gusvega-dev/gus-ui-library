@@ -60,7 +60,23 @@ export default function Page() {
 
 ---
 
-## What's new in 0.5.0
+## Stable 1.0.0 release
+
+GUS UI 1.0.0 is the first stable release of the library. The public package now
+has aligned npm metadata, source and issue links, an MIT license, typed exports,
+compiled CSS entrypoints, and production documentation at
+[ui.gusvega.dev](https://ui.gusvega.dev).
+
+Use this version when you want the documented component API, theme system, and
+package links to match across the website, GitHub, and npm.
+
+```bash
+npm install @gusvega/ui@1.0.0
+```
+
+---
+
+## What's included from 0.5.0
 
 ### Next.js App Router compatibility
 All 39 interactive components now have `'use client'` directives. Drop any component into a Next.js 13/14/15 App Router project without runtime errors or manual wrapping.

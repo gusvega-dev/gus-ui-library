@@ -1,6 +1,6 @@
 {
-  "name": "@gusvega-dev/gus-ui-library",
-  "version": "0.1.4",
+  "name": "@gusvega/ui",
+  "version": "1.0.0",
   "exports": "./dist/index.mjs",
   "license": "MIT",
   "publish": {

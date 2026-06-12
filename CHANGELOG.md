@@ -1,5 +1,15 @@
 # @gusvega/ui
 
+## 1.0.0
+
+### Major Changes
+
+- Release GUS UI 1.0.0 as the first stable version of the component library.
+
+  This release formalizes the public package metadata, MIT license, GitHub source
+  links, npm package homepage, typed exports, compiled CSS entrypoints, and
+  documentation surface for production use.
+
 ## 0.5.0
 
 ### Minor Changes
