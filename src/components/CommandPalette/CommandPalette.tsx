@@ -49,7 +49,7 @@ export function CommandPalette({
     return acc;
   }, {});
 
-  const flatFiltered = Object.values(grouped).flat();
+  const flatFiltered = Object.values(grouped).reduce<CommandItem[]>((items, group) => items.concat(group), []);
 
   useEffect(() => {
     setActiveIndex(0);

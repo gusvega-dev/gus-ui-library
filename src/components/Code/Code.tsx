@@ -2,16 +2,18 @@ import React from 'react';
 
 export interface CodeProps {
   block?: boolean;
+  wrap?: boolean;
   children: React.ReactNode;
   className?: string;
 }
 
-export const Code: React.FC<CodeProps> = ({ block = false, children, className = '' }) => {
+export const Code: React.FC<CodeProps> = ({ block = false, wrap = false, children, className = '' }) => {
   if (block) {
     return (
       <pre
         className={[
           'w-full rounded-lg bg-neutral-950 text-neutral-200 px-4 py-4 text-xs font-mono overflow-x-auto',
+          wrap ? 'whitespace-pre-wrap break-words' : '',
           className,
         ]
           .filter(Boolean)

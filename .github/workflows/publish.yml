@@ -37,6 +37,12 @@ jobs:
       - name: Ensure Rollup native package
         run: npm install --no-save --package-lock=false @rollup/rollup-linux-x64-gnu
 
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
       - name: Build
         run: npm run build
 

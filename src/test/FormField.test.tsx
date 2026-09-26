@@ -80,3 +80,32 @@ describe('FormField', () => {
     expect(container.firstChild).toHaveClass('my-field');
   });
 });
+
+describe('FormField associations', () => {
+  it('preserves the direct control error when only a hint is provided', () => {
+    render(<FormField label="Email" hint="Use your email"><Input error="Invalid" /></FormField>);
+    expect(screen.getByRole('textbox', { name: 'Email' })).toBeInvalid();
+  });
+
+  it('automatically connects a direct input to its label, hint, and required state', () => {
+    render(<FormField label="Email" hint="Use your work email" required><Input /></FormField>);
+    const input = screen.getByRole('textbox', { name: 'Email' });
+    expect(input).toBeRequired();
+    expect(input).toHaveAccessibleDescription('Use your work email');
+  });
+
+  it('preserves descriptions and switches from hint to error', () => {
+    const { rerender } = render(<><p id="external">External help</p><FormField label="Email" hint="Hint"><Input id="email" aria-describedby="external" /></FormField></>);
+    const input = screen.getByRole('textbox', { name: 'Email' });
+    expect(input).toHaveAttribute('id', 'email');
+    expect(input).toHaveAccessibleDescription('External help Hint');
+    rerender(<><p id="external">External help</p><FormField label="Email" hint="Hint" error="Invalid email"><Input id="email" aria-describedby="external" /></FormField></>);
+    expect(input).toHaveAccessibleDescription('External help Invalid email');
+    expect(input).toBeInvalid();
+  });
+
+  it('generates unique IDs for multiple fields', () => {
+    render(<><FormField label="First"><Input /></FormField><FormField label="Second"><Input /></FormField></>);
+    expect(screen.getByRole('textbox', { name: 'First' }).id).not.toBe(screen.getByRole('textbox', { name: 'Second' }).id);
+  });
+});

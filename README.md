@@ -16,6 +16,10 @@ npm install recharts
 
 ## Setup
 
+Use `@gusvega/ui/style.css` as the canonical CSS import. The older
+`@gusvega/ui/dist/style.css` path remains available for compatibility.
+
+
 **1. Import the stylesheet once at your app entry point:**
 
 ```ts
@@ -288,6 +292,7 @@ const vars = createThemeVariables({
 - **ToggleGroup** — toggle button group
 
 ### Forms
+- **Combobox** — searchable single select, controlled/uncontrolled value, keyboard navigation, native form value, semantic theme colors
 - **Input** — forwardRef, error state, disabled
 - **Textarea** — forwardRef, resizable, disabled
 - **NumberInput** — increment/decrement buttons, `min`, `max`, `step`, clamped
@@ -453,5 +458,14 @@ cd ui-library/gus-ui-library
 npm install
 npm run dev      # watch mode
 npm run build    # production build
+npm run check    # TypeScript, component regression tests, production build
 npm run release  # publish to npm via changesets
 ```
+
+## Component guides
+
+- [Combobox: API, keyboard interactions, and controlled usage](docs/combobox.md)
+- [Forms: labels, validation, and accessible descriptions](docs/forms.md)
+- [Quality roadmap](docs/quality-roadmap.md)
+
+For narrow code panels, `<Code block wrap>` wraps long lines. The default remains horizontal scrolling.
