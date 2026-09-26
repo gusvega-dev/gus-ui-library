@@ -1,0 +1,15 @@
+{
+  "pkg": "@gusvega/ui",
+  "globalName": "GusUI",
+  "projectId": "de780fb9-8766-43b0-af11-6d8ebab1ab47",
+  "shape": "package",
+  "buildCmd": "npm run build",
+  "cssEntry": "./dist/style.css",
+  "extraFonts": [".design-sync/fonts/fonts.css"],
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "AreaChart": { "cardMode": "column" },
+    "BarChart": { "cardMode": "column" },
+    "LineChart": { "cardMode": "column" }
+  }
+}
