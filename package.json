@@ -29,7 +29,8 @@
   ],
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "docs"
   ],
   "publishConfig": {
     "access": "public",
@@ -44,7 +45,11 @@
     "dev": "npm run dev:js & npm run dev:css",
     "release": "changeset publish",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test && npm run build"
   },
   "peerDependencies": {
     "react": ">=17",
