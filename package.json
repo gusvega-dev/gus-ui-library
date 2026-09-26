@@ -1,6 +1,6 @@
 {
   "name": "@gusvega/ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React UI component library built on Tailwind CSS",
   "license": "MIT",
   "private": false,
